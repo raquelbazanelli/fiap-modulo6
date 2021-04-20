@@ -1,15 +1,21 @@
 package com.fiap.creditcard.domain;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Cliente {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String nome;
+	
+	public Cliente() {
+		
+	}
 	
 	public Cliente(Long id) {
 		super();
