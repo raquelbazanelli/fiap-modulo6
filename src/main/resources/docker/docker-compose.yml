@@ -1,0 +1,10 @@
+version: '3'
+services:
+  fiap-web:
+    build: .
+      context: ./dir
+      dockerfile: Dockerfile
+      args:
+        versao: 0.0.1-SNAPSHOT
+    ports:
+      - "8080:80"
