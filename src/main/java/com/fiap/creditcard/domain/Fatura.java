@@ -1,14 +1,16 @@
 package com.fiap.creditcard.domain;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.sun.istack.NotNull;
@@ -21,12 +23,13 @@ public class Fatura {
 	private Long id;
 	
 	@NotNull
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cliente_id", referencedColumnName = "id")
+	@OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@JoinColumn(name = "id", referencedColumnName = "id")
 	private Cliente cliente;
 	
-	private LocalDate dataVencimento;
+	private Date dataVencimento;
 	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Compra> compras;
 	
 	private Boolean isPago;
@@ -47,11 +50,11 @@ public class Fatura {
 		this.compras = compras;
 	}
 
-	public LocalDate getDataVencimento() {
+	public Date getDataVencimento() {
 		return dataVencimento;
 	}
 
-	public void setDataVencimento(LocalDate dataVencimento) {
+	public void setDataVencimento(Date dataVencimento) {
 		this.dataVencimento = dataVencimento;
 	}
 
@@ -113,6 +116,12 @@ public class Fatura {
 		} else if (!isPago.equals(other.isPago))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Fatura [id=" + id + ", cliente=" + cliente + ", dataVencimento=" + dataVencimento + ", compras="
+				+ compras + ", isPago=" + isPago + "]";
 	}
 	
 	

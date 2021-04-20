@@ -1,91 +1,64 @@
 package com.fiap.creditcard.domain;
 
-import java.util.Date;
-import java.util.List;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import com.sun.istack.NotNull;
 
 @Entity
-public class Fatura {
+public class Compra {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@NotNull
-	@OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-	@JoinColumn(name = "id", referencedColumnName = "id")
-	private Cliente cliente;
-	
-	private Date dataVencimento;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Compra> compras;
-	
-	private Boolean isPago;
-
+	private LocalDateTime data;
+	private String descricao;
+	private String cnpj;
+	private BigDecimal valor;
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public List<Compra> getCompras() {
-		return compras;
+	public LocalDateTime getData() {
+		return data;
 	}
-
-	public void setCompras(List<Compra> compras) {
-		this.compras = compras;
+	public void setData(LocalDateTime data) {
+		this.data = data;
 	}
-
-	public Date getDataVencimento() {
-		return dataVencimento;
+	public String getDescricao() {
+		return descricao;
 	}
-
-	public void setDataVencimento(Date dataVencimento) {
-		this.dataVencimento = dataVencimento;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
-
-	public Boolean getIsPago() {
-		return isPago;
+	public String getCnpj() {
+		return cnpj;
 	}
-
-	public void setIsPago(Boolean isPago) {
-		this.isPago = isPago;
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
 	}
-	
-
-	public Cliente getCliente() {
-		return cliente;
+	public BigDecimal getValor() {
+		return valor;
 	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((compras == null) ? 0 : compras.hashCode());
-		result = prime * result + ((dataVencimento == null) ? 0 : dataVencimento.hashCode());
+		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
+		result = prime * result + ((data == null) ? 0 : data.hashCode());
+		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((isPago == null) ? 0 : isPago.hashCode());
+		result = prime * result + ((valor == null) ? 0 : valor.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -94,36 +67,34 @@ public class Fatura {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Fatura other = (Fatura) obj;
-		if (compras == null) {
-			if (other.compras != null)
+		Compra other = (Compra) obj;
+		if (cnpj == null) {
+			if (other.cnpj != null)
 				return false;
-		} else if (!compras.equals(other.compras))
+		} else if (!cnpj.equals(other.cnpj))
 			return false;
-		if (dataVencimento == null) {
-			if (other.dataVencimento != null)
+		if (data == null) {
+			if (other.data != null)
 				return false;
-		} else if (!dataVencimento.equals(other.dataVencimento))
+		} else if (!data.equals(other.data))
+			return false;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
 			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (isPago == null) {
-			if (other.isPago != null)
+		if (valor == null) {
+			if (other.valor != null)
 				return false;
-		} else if (!isPago.equals(other.isPago))
+		} else if (!valor.equals(other.valor))
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "Fatura [id=" + id + ", cliente=" + cliente + ", dataVencimento=" + dataVencimento + ", compras="
-				+ compras + ", isPago=" + isPago + "]";
-	}
-	
 	
 	
 }
