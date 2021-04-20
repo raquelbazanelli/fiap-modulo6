@@ -1,6 +1,6 @@
 package com.fiap.creditcard.service;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class FaturaService {
 	private FaturaRepository faturaRepository;
 
 	@Transactional
-	public Fatura novaFatura(Long idCliente, LocalDate dataVencimento) {
+	public Fatura novaFatura(Long idCliente, Date dataVencimento) {
 		
 		Fatura novaFatura = new Fatura();
 		novaFatura.setCliente(new Cliente(idCliente));
@@ -32,6 +32,7 @@ public class FaturaService {
 		return faturaRepository.findById(idFatura);
 	}
 	
+	@Transactional
 	public Fatura pagar(Long idFatura) {
 		Optional<Fatura> fatura = visualizar(idFatura);
 		
