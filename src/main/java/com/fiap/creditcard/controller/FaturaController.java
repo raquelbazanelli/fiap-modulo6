@@ -2,7 +2,7 @@ package com.fiap.creditcard.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
@@ -38,7 +38,7 @@ public class FaturaController {
     }
     
     @PostMapping()
-    public ResponseEntity<Fatura> add(@PathVariable("idCliente") Long idCliente, @RequestBody LocalDate dataVencimento) throws URISyntaxException {
+    public ResponseEntity<Fatura> add(@PathVariable("idCliente") Long idCliente, @RequestBody Date dataVencimento) throws URISyntaxException {
 
         final Fatura novaFatura = this.faturaService.novaFatura(idCliente, dataVencimento);
 
