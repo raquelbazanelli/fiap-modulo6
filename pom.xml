@@ -9,9 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.fiap</groupId>
-	<artifactId>creditcard</artifactId>
+	<artifactId>credit-card</artifactId>
 	<version>0.1.0</version>
-	<name>creditcard</name>
 	<description>Microserviço de cartão de crédito</description>
 	<properties>
 		<java.version>1.8</java.version>
