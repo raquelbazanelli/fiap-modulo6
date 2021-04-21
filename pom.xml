@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.fiap</groupId>
 	<artifactId>creditcard</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0</version>
 	<name>creditcard</name>
 	<description>Microserviço de cartão de crédito</description>
 	<properties>
